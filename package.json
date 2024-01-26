@@ -1,0 +1,23 @@
+{
+  "name": "trova",
+  "version": "0.0.1",
+  "description": "Simple command line utility to find information about packages",
+  "main": "index.js",
+  "bin": "index.js",
+  "scripts": {
+    "lint": "standard index.js",
+    "fix": "standard --fix index.js",
+    "start": "node index.js"
+  },
+  "type": "module",
+  "author": "Gabriele Fontana <gafreax@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "ora": "^8.0.1",
+    "undici": "^6.4.0"
+  },
+  "devDependencies": {
+    "standard": "^17.1.0"
+  }
+}
