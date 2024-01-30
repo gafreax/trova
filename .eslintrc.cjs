@@ -3,11 +3,13 @@ module.exports = {
     browser: true,
     es2021: true
   },
+  type: 'module',
   extends: 'eslint:recommended',
   overrides: [
     {
       env: {
-        node: true
+        node: true,
+        'jest/globals': true
       },
       files: ['.eslintrc.{js,cjs}'],
       parserOptions: {
@@ -24,5 +26,6 @@ module.exports = {
     'linebreak-style': ['error', 'unix'],
     quotes: ['error', 'single'],
     semi: ['error', 'never']
-  }
+  },
+  transform: {}
 }
