@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import chalk from 'chalk'
 import ora from 'ora'
 import process from 'node:process'
