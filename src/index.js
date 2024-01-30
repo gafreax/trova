@@ -1,26 +1,11 @@
 import chalk from 'chalk'
 import ora from 'ora'
 import process from 'node:process'
-import { Table } from 'console-table-printer'
 import { program } from 'commander'
 import { request } from 'undici'
-import config from './config.js'
+import config from '../config.js'
+import { buildTable } from './lib/table.js'
 
-/**
- * Truncate length with three dots suffix or the original string if its short
- * @param {string} text text on wich operate
- * @param {numeric} len the max len that text could be
- * @returns text truncated length with three dots suffix or the original string if its short
- */
-function ellipsys (text, len) {
-  if (text.length <= len) {
-    return text
-  }
-  const sub = text.substring(0, len)
-  const lastSpace = sub.lastIndexOf(' ')
-  const str = lastSpace ? sub.substring(0, lastSpace) : sub
-  return `${str}...`
-}
 
 /**
  * Search npm package across npm.org repos by term
@@ -52,20 +37,8 @@ async function trova (name) {
     console.log(chalk.red('No results found'))
     return false
   }
-  const maxDescriptionColumns = process.stdout.columns - 10 - objects.reduce((a, c) => c > a ? c : a, 0)
-  const p = new Table({
-    title: 'Packages',
-    sort: (row1, row2) => row2.score - row1.score,
-    columns: [
-      { name: 'name', title: 'Name', alignment: 'left', color: 'purple' },
-      { name: 'description', title: 'Description', alignment: 'left', color: 'cyan', printer: (value) => ellipsys(value, maxDescriptionColumns) },
-      { name: 'version', title: 'Version', alignment: 'left' },
-      { name: 'score' }
-    ],
-    disabledColumns: ['score'],
-    rows: objects.map(({ package: { name, description, version, score } }) => ({ name, description, version, score }))
-  })
-  p.printTable()
+  const table = buildTable(objects)
+  table.printTable()
   return true
 }
 

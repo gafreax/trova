@@ -1,13 +1,12 @@
 {
   "name": "trova",
-  "version": "0.0.1",
-  "description": "Simple command line utility to find information about packages",
-  "main": "index.js",
-  "bin": "index.js",
+  "version": "0.0.2",
+  "description": "Simple command line utility to find npm packages and its description",
+  "main": "src/index.js",
+  "bin": "src/index.js",
   "scripts": {
-    "lint": "standard index.js",
-    "fix": "standard --fix index.js",
-    "start": "node index.js"
+    "test": "node --experimental-vm-modules ./node_modules/.bin/jest",
+    "start": "node src/index.js"
   },
   "type": "module",
   "author": "Gabriele Fontana <gafreax@gmail.com>",
@@ -21,6 +20,6 @@
   },
   "devDependencies": {
     "eslint": "^8.56.0",
-    "standard": "^17.1.0"
+    "jest": "^29.7.0"
   }
 }
