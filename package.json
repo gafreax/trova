@@ -1,6 +1,6 @@
 {
-  "name": "@gafreax/trova",
-  "version": "0.0.8",
+  "name": "trova",
+  "version": "0.0.9",
   "description": "Simple command line utility to find npm packages and its description",
   "keywords": [
     "npm",
