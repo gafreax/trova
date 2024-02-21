@@ -1,6 +1,6 @@
 {
-  "name": "trova",
-  "version": "0.0.9",
+  "name": "@gafreax/trova",
+  "version": "0.0.10",
   "description": "Simple command line utility to find npm packages and its description",
   "keywords": [
     "npm",
@@ -15,7 +15,7 @@
   ],
   "main": "src/index.js",
   "bin": {
-    "trova": "src/index.js"
+    "@gafreax/trova": "src/index.js"
   },
   "scripts": {
     "test": "node --experimental-vm-modules ./node_modules/.bin/jest",
