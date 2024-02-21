@@ -1,7 +1,18 @@
 {
   "name": "@gafreax/trova",
-  "version": "0.0.4",
+  "version": "0.0.8",
   "description": "Simple command line utility to find npm packages and its description",
+  "keywords": [
+    "npm",
+    "search",
+    "package",
+    "description",
+    "cli",
+    "utility",
+    "command",
+    "teminal",
+    "find"
+  ],
   "main": "src/index.js",
   "bin": {
     "trova": "src/index.js"
