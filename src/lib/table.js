@@ -1,12 +1,16 @@
 import { Table } from 'console-table-printer'
+export const MAXCOL = 50
 
 export const colLen = (objects) => {
     return objects.reduce((a, c) => {
         const { package: { name, version, links }} = c
+        const nameLen = name.length > MAXCOL ? MAXCOL : name.length
+        const versionLen = version.length > MAXCOL ? MAXCOL : version.length
+        const linkLen = links.npm.length > MAXCOL ? MAXCOL : links.npm.length
         return { 
-            nameMaxLen: name.length - a.nameMaxLen> 0 ? name.length : a.nameMaxLen,
-            versionMaxLen: version.length - a.versionMaxLen > 0 ? version.length : a.versionMaxLen,
-            linkMaxLen: links.npm.length - a.linkMaxLen > 0 ? links.npm.length : a.linkMaxLen,
+            nameMaxLen: nameLen - a.nameMaxLen > 0 ? nameLen : a.nameMaxLen,
+            versionMaxLen: versionLen - a.versionMaxLen > 0 ? versionLen : a.versionMaxLen,
+            linkMaxLen: linkLen - a.linkMaxLen > 0 ? linkLen : a.linkMaxLen,
         }
     }, {
         nameMaxLen: 0,
@@ -15,6 +19,10 @@ export const colLen = (objects) => {
     })
     
 }
+
+export const buildLinks = link => link.length > MAXCOL ?  "https://www.npmjs.com/" : link
+
+export const buildName = name => name.length > MAXCOL ? name.substring(0, name.search(/[^a-z]i/)) : name
 
 export const buildTable = (objects) => {
     const { nameMaxLen, versionMaxLen, linkMaxLen } = colLen(objects)
@@ -30,7 +38,7 @@ export const buildTable = (objects) => {
             { name: 'score', title: 'Score', alignment: 'right', color: 'green' }, 
         ],
         disabledColumns: ['score'],
-        rows: objects.map(({ package: { name, description, version, links }, score }) => ({ name, description, version, link: links.npm ?? '', score: score.final }))
+        rows: objects.map(({ package: { name, description, version, links }, score }) => ({ name: buildName(name), description, version, link: buildLinks(links.npm), score: score.final }))
     })
     return p
 }
