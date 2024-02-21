@@ -15,17 +15,23 @@ THE SOFTWARE IS PROVIDED “AS IS” AND THE AUTHOR DISCLAIMS ALL WARRANTIES WIT
 ### Usage
 
 ```bash
-npx @gafreax/trova <search_term>
+npx trova <search_term>
 ```
 
-Replace `<search_term>` with the name of the package you want to search for.
+Replace `<search_term>` with the term you want to search for.
 
 This will search for the `react` package and display a summary of its information in a table format.
+
+```bash
+npx trova react
+```
+
 
 ### Table Format
 
 The table format will include the following columns:
 
-* Package name
 * Version
+* Package name
 * Description
+* Link
