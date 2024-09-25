@@ -17,7 +17,7 @@ We will search for the `autocannon` package and display a summary of its informa
 npx @gafreax/trova autocannon
 ```
 
-Output:
+#### Output:
 ```bash
 Trova autocannon
                                                                         Packages                                                                         
