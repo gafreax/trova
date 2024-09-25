@@ -10,6 +10,15 @@ npx @gafreax/trova <search_term>
 
 Replace `<search_term>` with the term you want to search for.
 
+### Table Format
+
+The table format will include the following columns:
+
+* Version
+* Package name
+* Description
+* Link
+
 #### Example
 We will search for the `autocannon` package and display a summary of its information in a table format.
 
@@ -42,14 +51,6 @@ Trova autocannon
 └───────────────┴──────────────────────────┴───────────────────────────────────────────────────────┴────────────────────────────────────────────────────┘
 ```
 
-### Table Format
-
-The table format will include the following columns:
-
-* Version
-* Package name
-* Description
-* Link
 
 ## License
 
