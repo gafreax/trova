@@ -48,7 +48,7 @@ The table format will include by default the following columns:
 We will search for the `autocannon` package and display a summary of its information in a table format, limit the results to 3 and exclude the `score` field and the `link` field.
 
 ```bash
-$ npx @gafreax/trova autocannon -l 3 -x link -x score   # using npx
+$ npx trova autocannon -l 3 -x link -x score            # using npx
 $ npm start -- autocannon -l 3 -x link -x score         # using npm inside the project
 $ trova autocannon -l 3 -x link -x score                # using the global installation (npm i -g @gafreax/trova)
 ```
