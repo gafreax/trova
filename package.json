@@ -15,7 +15,7 @@
   ],
   "main": "src/index.js",
   "bin": {
-    "@gafreax/trova": "src/index.js"
+    "trova": "src/index.js"
   },
   "scripts": {
     "test": "node --experimental-vm-modules ./node_modules/.bin/jest",
