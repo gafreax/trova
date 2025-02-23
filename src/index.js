@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 import chalk from 'chalk'
 import ora from 'ora'
-import process from 'node:process'
 import { program } from 'commander'
 import { request } from 'undici'
+
+import packageJson from '../package.json' with { type: "json" }
 import config from '../config.js'
 import { buildTable } from './lib/table.js'
 
@@ -50,14 +51,16 @@ async function trova (name, options) {
 }
 
 async function start () {
+  console.log(chalk.blue('Trova - Search npm package across npm.org repos by term'))
+  console.log(version)
   program
     .name('trova')
     .description('Search npm package across npm.org repos by term')
-    .version(process.env.npm_package_version)
-    .argument('<name>', 'package to search')
+  .version(packageJson.version)
     .option('-l, --limit <number>', 'limit the number of results', 10)
     .option('-f, --fields [fields...]', 'fields to show', ['name', 'version', 'description', 'link'])
     .option('-x, --exclude-fields [fields...]', 'fields to exclude', ['score'])
+    .argument('<name>', 'package to search')
     .action((name, options) => {
       if (name) {
         console.log(chalk.blue('Trova ' + name))
@@ -66,7 +69,8 @@ async function start () {
         console.log(chalk.red('No search term provided'))
       }
     })
-  program.parse(process.argv)
+  program.parse()
+
 }
 
 start()
