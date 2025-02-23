@@ -7,6 +7,11 @@ import { request } from 'undici'
 import config from '../config.js'
 import { buildTable } from './lib/table.js'
 
+/**
+ * @typedef {Object} options
+ * @property {number} limit - limit the number of results
+ * @property {string[]} fields - fields to show
+ */
 
 /**
  * Search npm package across npm.org repos by term
@@ -31,14 +36,15 @@ async function search (param) {
 /**
  * Start command trova
  * @param {string} name of packet to search for
+ * @param {Object} options - options for search
  */
-async function trova (name) {
+async function trova (name, options) {
   const { objects } = await search(name)
   if (objects.length === 0) {
     console.log(chalk.red('No results found'))
     return false
   }
-  const table = buildTable(objects)
+  const table = buildTable(objects, options)
   table.printTable()
   return true
 }
@@ -48,15 +54,19 @@ async function start () {
     .name('trova')
     .description('Search npm package across npm.org repos by term')
     .version(process.env.npm_package_version)
-  program
     .argument('<name>', 'package to search')
-  program.parse()
-  console.log(chalk.green('Trova ' + program.args[0]))
-  if (program.args[0]) {
-    await trova(program.args[0])
-  } else {
-    console.log(chalk.red('No search term provided'))
-  }
+    .option('-l, --limit <number>', 'limit the number of results', 10)
+    .option('-f, --fields [fields...]', 'fields to show', ['name', 'version', 'description', 'link'])
+    .option('-x, --exclude-fields [fields...]', 'fields to exclude', ['score'])
+    .action((name, options) => {
+      if (name) {
+        console.log(chalk.blue('Trova ' + name))
+        trova(name, options)
+      } else {
+        console.log(chalk.red('No search term provided'))
+      }
+    })
+  program.parse(process.argv)
 }
 
 start()
