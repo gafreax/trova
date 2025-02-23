@@ -52,7 +52,6 @@ async function trova (name, options) {
 
 async function start () {
   console.log(chalk.blue('Trova - Search npm package across npm.org repos by term'))
-  console.log(version)
   program
     .name('trova')
     .description('Search npm package across npm.org repos by term')
